@@ -12,5 +12,7 @@ RoxygenNote: 7.1.2
 Imports:
     DBI,
     dplyr,
+    jsonlite,
+    plyr,
     magrittr,
     tidyr

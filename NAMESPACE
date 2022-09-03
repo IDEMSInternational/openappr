@@ -3,4 +3,6 @@
 export("%>%")
 export(get_nf_data)
 export(get_postgres_data)
+export(get_user_data)
 importFrom(magrittr,"%>%")
+importFrom(utils,capture.output)

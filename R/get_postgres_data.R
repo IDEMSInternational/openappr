@@ -9,8 +9,8 @@
 #' @export
 #'
 #' @examples # TODO
-get_postgres_data <- function(site, name = "app_users"){
-  plh_tables <- DBI::dbListTables(site)
+get_postgres_data <- function(site, name = c("app_users", "app_notification_interaction")){
+  name <- match.arg(name)
   df <- DBI::dbReadTable(conn = site,
                          name = name)
   return(df)

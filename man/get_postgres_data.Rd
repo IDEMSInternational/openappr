@@ -4,7 +4,7 @@
 \alias{get_postgres_data}
 \title{Get data from Postgres}
 \usage{
-get_postgres_data(site, name = "app_users")
+get_postgres_data(site, name = c("app_users", "app_notification_interaction"))
 }
 \arguments{
 \item{site}{Connection to database to get original data (using DBI::dbConnect).}

@@ -2,6 +2,7 @@
 
 library(RSQLite)
 library(DBI)
+library(postgresr)
 
 # create some dummy data to read in when testing -----------
 con <- dbConnect(RSQLite::SQLite(), ":memory:")

@@ -10,8 +10,11 @@ get_user_data(
   date_to = NULL,
   format_date = "\%Y-\%m-\%d",
   tzone_date = "UTC",
-  include_UIC_data = TRUE,
+  include_UIC_data = FALSE,
   merge_check = TRUE,
+  filter = FALSE,
+  country = "Tanzania",
+  study,
   UIC_Tracker,
   app_user_id = "app_user_id",
   join_UIC = "UIC",
@@ -34,6 +37,12 @@ Invalid values are most commonly treated as UTC, on some platforms with a warnin
 \item{include_UIC_data}{logical. Default \code{TRUE}. Whether to merge UIC data.}
 
 \item{merge_check}{logical. Default \code{TRUE}. Whether to display the close matches when merging UIC data in.}
+
+\item{filter}{logical. Default \code{FALSE}. Whether to filter UIC tracker data by country and study.}
+
+\item{country}{character. Only if \code{filter == TRUE}. The country to filter the UIC tracker data to}
+
+\item{study}{character. Only if \code{filter == TRUE}. The study to filter the UIC tracker data to}
 
 \item{UIC_Tracker}{If \code{include_UIC_data = TRUE}, UIC tracker data.}
 

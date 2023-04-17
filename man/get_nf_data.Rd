@@ -4,10 +4,27 @@
 \alias{get_nf_data}
 \title{Get notification data from Postgres site}
 \usage{
-get_nf_data(site)
+get_nf_data(
+  site,
+  UIC_Tracker = NULL,
+  filter = FALSE,
+  app_user_id = "app_user_id",
+  country = "Tanzania",
+  study
+)
 }
 \arguments{
 \item{site}{Connection to database to get original data (using DBI::dbConnect).}
+
+\item{UIC_Tracker}{If \code{include_UIC_data = TRUE}, UIC tracker data. Required if \code{filter == TRUE}.}
+
+\item{filter}{logical. Default \code{FALSE}. Whether to filter UIC tracker data by country and study.}
+
+\item{app_user_id}{Default "app_user_id". If \code{include_UIC_data = TRUE}, variable in the postgres data to merge the UIC data by.}
+
+\item{country}{character. Only if \code{filter == TRUE}. The country to filter the UIC tracker data to.}
+
+\item{study}{character. Only if \code{filter == TRUE}. The study to filter the UIC tracker data to.}
 }
 \value{
 Notification data from Postgres

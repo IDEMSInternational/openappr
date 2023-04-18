@@ -15,8 +15,11 @@ Imports:
     fuzzyjoin,
     jsonlite,
     plyr,
+    purrr,
     magrittr,
+    rlang,
     RSQLite,
+    stringr,
     testthat,
     tidyr,
     yesno

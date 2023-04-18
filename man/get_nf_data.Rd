@@ -2,35 +2,35 @@
 % Please edit documentation in R/get_nf_data.R
 \name{get_nf_data}
 \alias{get_nf_data}
-\title{Get notification data from Postgres site}
+\title{Retrieve data from the app_notification_interaction table}
 \usage{
 get_nf_data(
   site,
-  UIC_Tracker = NULL,
   filter = FALSE,
+  UIC_Tracker = NULL,
   app_user_id = "app_user_id",
   country = "Tanzania",
   study
 )
 }
 \arguments{
-\item{site}{Connection to database to get original data (using DBI::dbConnect).}
+\item{site}{The name of the PostgreSQL database (using DBI::dbConnect).}
 
-\item{UIC_Tracker}{If \code{include_UIC_data = TRUE}, UIC tracker data. Required if \code{filter == TRUE}.}
+\item{filter}{A logical value indicating whether to filter the UIC data frame (defaults to \code{FALSE}).}
 
-\item{filter}{logical. Default \code{FALSE}. Whether to filter UIC tracker data by country and study.}
+\item{UIC_Tracker}{A data frame containing UIC data (if filter is \code{TRUE}).}
 
-\item{app_user_id}{Default "app_user_id". If \code{include_UIC_data = TRUE}, variable in the postgres data to merge the UIC data by.}
+\item{app_user_id}{A character string representing the name of the column containing app user IDs in \code{UIC_Tracker}.}
 
-\item{country}{character. Only if \code{filter == TRUE}. The country to filter the UIC tracker data to.}
+\item{country}{A character string representing the country for which to retrieve data (required if filter is \code{TRUE}).}
 
-\item{study}{character. Only if \code{filter == TRUE}. The study to filter the UIC tracker data to.}
+\item{study}{A character string representing the study for which to retrieve data (required if filter is \code{TRUE}).}
 }
 \value{
-Notification data from Postgres
+Data frame containing notification data from postgres
 }
 \description{
-Get notification data from Postgres site
+This function retrieves data from the `app_notification_interaction`` table in a PostgreSQL database.
 }
 \examples{
 #TODO

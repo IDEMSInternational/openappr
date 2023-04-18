@@ -6,57 +6,58 @@
 \usage{
 get_user_data(
   site,
-  date_from,
-  date_to = NULL,
-  format_date = "\%Y-\%m-\%d",
-  tzone_date = "UTC",
-  include_UIC_data = FALSE,
-  merge_check = TRUE,
   filter = FALSE,
   country = "Tanzania",
   study,
   UIC_Tracker,
   app_user_id = "app_user_id",
+  include_UIC_data = FALSE,
+  merge_check = TRUE,
   join_UIC = "UIC",
-  max_dist = 5
+  max_dist = 5,
+  date_from = NULL,
+  date_to = NULL,
+  format_date = "\%Y-\%m-\%d",
+  tzone_date = "UTC"
 )
 }
 \arguments{
-\item{site}{Connection to database to get original data (using DBI::dbConnect).}
+\item{site}{The name of the PostgreSQL database (using DBI::dbConnect).}
 
-\item{date_from}{Date to read in data from.}
+\item{filter}{A logical value indicating whether to filter data (defaults to \code{FALSE}).}
 
-\item{date_to}{Date to read in data to.}
+\item{country}{A character string representing the country for which to retrieve data (required if filter is \code{TRUE}).}
 
-\item{format_date}{Character string giving a date-time format as used by \code{\link[base]{strptime}}.}
+\item{study}{A character string representing the study for which to retrieve data (required if filter is \code{TRUE}).}
 
-\item{tzone_date}{Time zone specification to be used for the conversion, if one is required.
-"UTC" by default. System-specific (see \code{\link[base]{as.POSIXlt}}), but "" is the current time zone, and "GMT" is UTC (Universal Time, Coordinated).
+\item{UIC_Tracker}{A data frame containing UIC data (if \code{include_UIC_data = TRUE}).}
+
+\item{app_user_id}{A character string representing the name of the column containing app user IDs in \code{UIC_Tracker}.}
+
+\item{include_UIC_data}{A logical value indicating whether to include UIC data (defaults to \code{FALSE}).}
+
+\item{merge_check}{A logical value indicating whether to merge check data (defaults to \code{TRUE}).}
+
+\item{join_UIC}{A character string representing the name of the column used to join UIC_Tracker and the main data frame.}
+
+\item{max_dist}{An integer specifying the maximum distance for UIC data (defaults to 5).}
+
+\item{date_from}{An optional character string representing the date from which to retrieve data.}
+
+\item{date_to}{An optional character string representing the date to which to retrieve data.}
+
+\item{format_date}{A character string specifying the format of the date strings (defaults to "\%Y-\%m-\%d").}
+
+\item{tzone_date}{A character string specifying the time zone for the date strings (defaults to "UTC").
+System-specific (see \code{\link[base]{as.POSIXlt}}), but "" is the current time zone, and "GMT" is UTC (Universal Time, Coordinated).
 Invalid values are most commonly treated as UTC, on some platforms with a warning.}
-
-\item{include_UIC_data}{logical. Default \code{TRUE}. Whether to merge UIC data.}
-
-\item{merge_check}{logical. Default \code{TRUE}. Whether to display the close matches when merging UIC data in.}
-
-\item{filter}{logical. Default \code{FALSE}. Whether to filter UIC tracker data by country and study.}
-
-\item{country}{character. Only if \code{filter == TRUE}. The country to filter the UIC tracker data to}
-
-\item{study}{character. Only if \code{filter == TRUE}. The study to filter the UIC tracker data to}
-
-\item{UIC_Tracker}{If \code{include_UIC_data = TRUE}, UIC tracker data.}
-
-\item{app_user_id}{Default "app_user_id". If \code{include_UIC_data = TRUE}, variable in the postgres data to merge the UIC data by.}
-
-\item{join_UIC}{Default "UIC". If \code{include_UIC_data = TRUE}, variable to merge the UIC data by.}
-
-\item{max_dist}{Default \code{5}. Maximum string distance when merging UIC Tracker data.}
 }
 \value{
-User data from postgres
+Data frame containing user data from postgres
 }
 \description{
-Get user data from postgres site
+Retrieves data from the \code{app_users} table in the specified PostgreSQL database, and converts the contact_fields column to a data frame using jsonlite::fromJSON().
+If filter is TRUE, the function further filters the data to include only rows where the Country column matches country and the Study column matches study.
 }
 \examples{
 # TODO

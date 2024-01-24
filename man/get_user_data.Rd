@@ -10,7 +10,9 @@ get_user_data(
   country = "Tanzania",
   study,
   UIC_Tracker,
-  app_user_id = "app_user_id",
+  app_user_id = NULL,
+  filter_variable = NULL,
+  filter_variable_value = NULL,
   include_UIC_data = FALSE,
   merge_check = TRUE,
   join_UIC = "UIC",
@@ -32,7 +34,11 @@ get_user_data(
 
 \item{UIC_Tracker}{A data frame containing UIC data (if \code{include_UIC_data = TRUE}).}
 
-\item{app_user_id}{A character string representing the name of the column containing app user IDs in \code{UIC_Tracker}.}
+\item{app_user_id}{A character string representing the name of the column containing app user IDs in \code{UIC_Tracker}. Default \code{NULL}.}
+
+\item{filter_variable}{A character string representing the name of the column to filter to if \code{filter == TRUE} and \code{app_user_id} is \code{NULL}.}
+
+\item{filter_variable_value}{A character string representing the value of the column \code{filter_variable} to filter to if \code{filter == TRUE} and \code{app_user_id} is \code{NULL}.}
 
 \item{include_UIC_data}{A logical value indicating whether to include UIC data (defaults to \code{FALSE}).}
 

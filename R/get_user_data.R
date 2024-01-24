@@ -8,7 +8,9 @@
 #' @param country A character string representing the country for which to retrieve data (required if filter is `TRUE`).
 #' @param study A character string representing the study for which to retrieve data (required if filter is `TRUE`).
 #' @param UIC_Tracker A data frame containing UIC data (if `include_UIC_data = TRUE`). 
-#' @param app_user_id A character string representing the name of the column containing app user IDs in `UIC_Tracker`.
+#' @param app_user_id A character string representing the name of the column containing app user IDs in `UIC_Tracker`. Default `NULL`.
+#' @param filter_variable A character string representing the name of the column to filter to if `filter == TRUE` and `app_user_id` is `NULL`.
+#' @param filter_variable_value A character string representing the value of the column `filter_variable` to filter to if `filter == TRUE` and `app_user_id` is `NULL`.
 #' @param include_UIC_data A logical value indicating whether to include UIC data (defaults to `FALSE`).
 #' @param merge_check A logical value indicating whether to merge check data (defaults to `TRUE`).
 #' @param join_UIC A character string representing the name of the column used to join UIC_Tracker and the main data frame.
@@ -25,15 +27,21 @@
 #' @importFrom utils capture.output
 #'
 #' @examples # TODO
-get_user_data <- function (site, filter = FALSE, country = "Tanzania", study, UIC_Tracker, app_user_id = "app_user_id",
+get_user_data <- function (site, filter = FALSE, country = "Tanzania", study, UIC_Tracker, app_user_id = NULL,
+                           filter_variable = NULL, filter_variable_value = NULL,
                            include_UIC_data = FALSE, merge_check = TRUE, join_UIC = "UIC", max_dist = 5,
                            date_from = NULL, date_to = NULL, format_date = "%Y-%m-%d",tzone_date = "UTC") {
   
   if (filter){
-    app_id <- UIC_Tracker %>% 
-      dplyr::filter(Country == country, Study == study) %>% 
-      dplyr::pull(YourParentAppCode)
-    qry <- stringr::str_c("select * from app_users where ", app_user_id, " in ('", paste0(app_id, collapse="', '"), "')")
+    if (!is.null(app_user_id)){
+      app_id <- UIC_Tracker %>% 
+        dplyr::filter(Country == country, Study == study) %>% 
+        dplyr::pull(YourParentAppCode)
+      qry <- stringr::str_c("select * from app_users where ", app_user_id, " in ('", paste0(app_id, collapse="', '"), "')")
+    } else {
+      qry <- stringr::str_c("select * from app_users where ", filter_variable, " in ('", paste0(filter_variable_value, collapse = "', '"), "')")
+    }
+    
     df <- get_postgres_data(site = site,  name = "app_users", qry = qry)
   } else {
     df <- get_postgres_data(site = site, name = "app_users")

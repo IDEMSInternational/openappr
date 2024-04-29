@@ -18,6 +18,7 @@ Imports:
     purrr,
     magrittr,
     rlang,
+    RPostgres,
     RSQLite,
     stringr,
     testthat,

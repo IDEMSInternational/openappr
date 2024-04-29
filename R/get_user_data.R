@@ -3,7 +3,7 @@
 #' @description Retrieves data from the `app_users` table in the specified PostgreSQL database, and converts the contact_fields column to a data frame using jsonlite::fromJSON().
 #' If filter is TRUE, the function further filters the data to include only rows where the Country column matches country and the Study column matches study.
 #'
-#' @param site The name of the PostgreSQL database (using DBI::dbConnect).
+#' @param site The name of the PostgreSQL database (using `DBI::dbConnect` or `set_app_connection()`).
 #' @param filter A logical value indicating whether to filter data (defaults to `FALSE`).
 #' @param country A character string representing the country for which to retrieve data (required if filter is `TRUE`).
 #' @param study A character string representing the study for which to retrieve data (required if filter is `TRUE`).
@@ -27,7 +27,7 @@
 #' @importFrom utils capture.output
 #'
 #' @examples # TODO
-get_user_data <- function (site, filter = FALSE, country = "Tanzania", study, UIC_Tracker, app_user_id = NULL,
+get_user_data <- function (site = get_app_connection(), filter = FALSE, country = "Tanzania", study, UIC_Tracker, app_user_id = NULL,
                            filter_variable = NULL, filter_variable_value = NULL,
                            include_UIC_data = FALSE, merge_check = TRUE, join_UIC = "UIC", max_dist = 5,
                            date_from = NULL, date_to = NULL, format_date = "%Y-%m-%d",tzone_date = "UTC") {

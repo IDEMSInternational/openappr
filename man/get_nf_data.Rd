@@ -5,7 +5,7 @@
 \title{Retrieve data from the app_notification_interaction table}
 \usage{
 get_nf_data(
-  site,
+  site = get_app_connection(),
   filter = FALSE,
   UIC_Tracker = NULL,
   app_user_id = "app_user_id",
@@ -14,7 +14,7 @@ get_nf_data(
 )
 }
 \arguments{
-\item{site}{The name of the PostgreSQL database (using DBI::dbConnect).}
+\item{site}{The name of the PostgreSQL database (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
 
 \item{filter}{A logical value indicating whether to filter the UIC data frame (defaults to \code{FALSE}).}
 

@@ -5,7 +5,7 @@
 \title{Get user data from postgres site}
 \usage{
 get_user_data(
-  site,
+  site = get_app_connection(),
   filter = FALSE,
   country = "Tanzania",
   study,
@@ -24,7 +24,7 @@ get_user_data(
 )
 }
 \arguments{
-\item{site}{The name of the PostgreSQL database (using DBI::dbConnect).}
+\item{site}{The name of the PostgreSQL database (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
 
 \item{filter}{A logical value indicating whether to filter data (defaults to \code{FALSE}).}
 

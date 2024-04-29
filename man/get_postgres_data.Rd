@@ -5,13 +5,13 @@
 \title{Get data from Postgres}
 \usage{
 get_postgres_data(
-  site,
+  site = get_app_connection(),
   name = c("app_users", "app_notification_interaction"),
   qry = NULL
 )
 }
 \arguments{
-\item{site}{Connection to database to get original data (using DBI::dbConnect).}
+\item{site}{The name of the PostgreSQL database (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
 
 \item{name}{Data to call from connection. Default \code{"app_users"}, but also takes \code{"app_notification_interaction"}. Only if \code{qry = NULL}.}
 
@@ -21,7 +21,7 @@ get_postgres_data(
 Data from Postgres
 }
 \description{
-Call ParentApp data from Postgres
+Call App data from Postgres
 }
 \examples{
 # TODO

@@ -2,7 +2,7 @@
 #'
 #' This function retrieves data from the `app_notification_interaction`` table in a PostgreSQL database.
 #' 
-#' @param site The name of the PostgreSQL database (using DBI::dbConnect).
+#' @param site The name of the PostgreSQL database (using `DBI::dbConnect` or `set_app_connection()`).
 #' @param filter A logical value indicating whether to filter the UIC data frame (defaults to `FALSE`).
 #' @param UIC_Tracker A data frame containing UIC data (if filter is `TRUE`). 
 #' @param app_user_id A character string representing the name of the column containing app user IDs in `UIC_Tracker`.
@@ -13,7 +13,7 @@
 #' @export
 #' 
 #' @examples #TODO
-get_nf_data <- function(site, filter = FALSE, UIC_Tracker = NULL,
+get_nf_data <- function(site = get_app_connection(), filter = FALSE, UIC_Tracker = NULL,
                          app_user_id = "app_user_id", country = "Tanzania", study) {
   if (filter){
     app_id <- UIC_Tracker %>% 

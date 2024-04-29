@@ -1,8 +1,8 @@
 #' Get data from Postgres
 #' 
-#' @description Call ParentApp data from Postgres
+#' @description Call App data from Postgres
 #'
-#' @param site Connection to database to get original data (using DBI::dbConnect).
+#' @param site The name of the PostgreSQL database (using `DBI::dbConnect` or `set_app_connection()`).
 #' @param name Data to call from connection. Default `"app_users"`, but also takes `"app_notification_interaction"`. Only if `qry = NULL`.
 #' @param qry A character string containing SQL. Note that to call the named data (e.g., `app_users`) with `qry`, use `qry = "select * from app_users`.
 #'
@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples # TODO
-get_postgres_data <- function (site, name = c("app_users", "app_notification_interaction"), qry = NULL){
+get_postgres_data <- function (site = get_app_connection(), name = c("app_users", "app_notification_interaction"), qry = NULL){
   name <- match.arg(name)
   if (is.null(qry)){
     df <- DBI::dbReadTable(conn = site, name = name)

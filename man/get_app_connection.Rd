@@ -12,3 +12,16 @@ returns a the app connection to the app data.
 \description{
 Call the app connection. The connection is set in the function \code{set_app_connection}.
 }
+\examples{
+# Establish a connection to the PostgreSQL database
+set_app_connection(
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
+)
+
+get_app_connection()
+
+}

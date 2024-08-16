@@ -13,6 +13,31 @@
 #' @export
 #' 
 #' @examples # TODO
+#' # First we need to set an app connection
+#' set_app_connection(
+#'   dbname = "vmc",
+#'   host = "apps-server.idems.international",
+#'   port = 5432,
+#'   user = "vmc",
+#'   password = "LSQkyYg5KzL747"
+#' )
+#' 
+#' # Retrieve all data from the 'app_users' table
+#' data_all_users <- get_openapp_data(name = "app_users")
+#' 
+#' # Retrieve filtered data from the 'app_users' table where 'app_user_id' is '3e68fcda-d4cd-400e-8b12-6ddfabced348' or '223925c7-443a-411c-aa2a-a394f991dd52'
+#' valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+#' data_filtered_users <- get_openapp_data(
+#'   name = "app_users",
+#'   filter = TRUE,
+#'   filter_variable = "app_user_id",
+#'   filter_variable_value = valid_ids
+#' )
+#' 
+#' # Retrieve data using a custom SQL query
+#' custom_query_data <- get_openapp_data(
+#'   qry = "SELECT * FROM app_users WHERE app_version = '0.16.33'"
+#' )
 get_openapp_data <- function (site = get_app_connection(),
                               name = c("app_users", "app_notification_interaction"),
                               filter = FALSE,

@@ -21,12 +21,29 @@ get_nf_data(
 \item{filter_variable_value}{A character string representing the value of the \code{filter_variable} column to filter if \code{filter == TRUE}.}
 }
 \value{
-A data frame containing notification interaction data from the PostgreSQL database, with the \code{notification_meta} column parsed into separate columns.
+A data frame containing notification interaction data from OpenAppBuilder, with the \code{notification_meta} column parsed into separate columns.
 }
 \description{
 This function retrieves data from the \code{app_notification_interaction} table in OpenAppBuilder and efficiently parses the \code{notification_meta} column from JSON format.
 }
 \examples{
-# TODO
+# First we need to set an app connection
+set_app_connection(
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
+)
 
+# Retrieve all notification data
+data_all_nf <- get_nf_data()
+
+# Retrieve data where 'app_user_id' is '3e68fcda-d4cd-400e-8b12-6ddfabced348' or '223925c7-443a-411c-aa2a-a394f991dd52'
+valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+data_filtered_users <- get_nf_data(
+  filter = TRUE,
+  filter_variable = "app_user_id",
+  filter_variable_value = valid_ids
+)
 }

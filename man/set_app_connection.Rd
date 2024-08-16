@@ -27,8 +27,14 @@ Establishes a connection to a PostgreSQL database using provided credentials.
 This function utilises the \code{DBI} and \code{RPostgres} packages to set up the connection.
 }
 \examples{
-# Connect to a PostgreSQL database
-#con <- set_app_connection("mydatabase", "localhost", 5432, "myuser", "mypassword")
+# Establish a connection to the PostgreSQL database
+set_app_connection(
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
+)
 
 }
 \seealso{

@@ -42,5 +42,23 @@ Retrieves data from the \code{app_users} table in OpenAppBuilder, and efficientl
 If \code{filter} is \code{TRUE}, the function further filters the data to include only rows where the specified \code{filter_variable} column matches \code{filter_variable_value}.
 }
 \examples{
-# TODO
+# First we need to set an app connection
+set_app_connection(
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
+)
+
+# Retrieve all data from the 'app_users' table
+data_all_users <- get_user_data()
+
+# Retrieve filtered data from the 'app_users' table where 'app_user_id' is '3e68fcda-d4cd-400e-8b12-6ddfabced348' or '223925c7-443a-411c-aa2a-a394f991dd52'
+valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+data_filtered_users <- get_user_data(
+  filter = TRUE,
+  filter_variable = "app_user_id",
+  filter_variable_value = valid_ids
+)
 }

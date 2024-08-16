@@ -38,6 +38,12 @@
 #'   filter_variable = "app_user_id",
 #'   filter_variable_value = valid_ids
 #' )
+#' 
+#' # Retrieve user data within a specific date range
+#' date_filtered_data <- get_user_data(
+#'   date_from = "2023-01-01",
+#'   date_to = "2024-08-18"
+#' )
 get_user_data <- function(site = get_app_connection(),
                            filter = FALSE,
                            filter_variable = NULL,

@@ -1,11 +1,11 @@
 library(testthat)
 
 set_app_connection(
- dbname = "vmc",
- host = "apps-server.idems.international",
- port = 5432,
- user = "vmc",
- password = "LSQkyYg5KzL747"
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
 )
 
 valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")

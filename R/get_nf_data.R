@@ -40,20 +40,8 @@ get_nf_data <- function(site = get_app_connection(), filter = FALSE, filter_vari
                          filter_variable = filter_variable,
                          filter_variable_value = filter_variable_value)
   
-  # appdata_df <- purrr::map(df$contact_fields, jsonlite::fromJSON) %>% dplyr::bind_rows()
-  # return_data <- dplyr::bind_cols(df, appdata_df)
-  # 
-  # 
-  appdata_df <- list()
-  for (i in 1:nrow(df)) {
-    if (!is.na(df$notification_meta[i])) {
-      appdata_df[[i]] <- data.frame(jsonlite::fromJSON(df$notification_meta[i]))
-    }
-    else {
-      appdata_df[[i]] <- data.frame(i)
-    }
-  }
-  appdata <- dplyr::bind_rows(appdata_df)
-  plhdata <- dplyr::bind_cols(df, appdata)
-  return(plhdata)
+  appdata_df <- purrr::map(df$notification_meta, jsonlite::fromJSON) %>% dplyr::bind_rows()
+  return_data <- dplyr::bind_cols(df, appdata_df)
+  
+  return(return_data)
 }

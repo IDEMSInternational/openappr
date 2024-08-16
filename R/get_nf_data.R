@@ -1,39 +1,31 @@
-#' Retrieve data from the app_notification_interaction table
+#' Get notification data from OpenAppBuilder
 #'
-#' This function retrieves data from the `app_notification_interaction`` table in a PostgreSQL database.
+#' @description This function retrieves data from the `app_notification_interaction` table in OpenAppBuilder and efficiently parses the `notification_meta` column from JSON format.
+#'
+#' @param site The name of the PostgreSQL database connection (using `DBI::dbConnect` or `set_app_connection()`).
+#' @param filter A logical value indicating whether to filter the data (defaults to `FALSE`).
+#' @param filter_variable A character string representing the name of the column to filter if `filter == TRUE` and `filter_variable_value` is provided.
+#' @param filter_variable_value A character string representing the value of the `filter_variable` column to filter if `filter == TRUE`.
 #' 
-#' @param site The name of the PostgreSQL database (using `DBI::dbConnect` or `set_app_connection()`).
-#' @param filter A logical value indicating whether to filter the UIC data frame (defaults to `FALSE`).
-#' @param UIC_Tracker A data frame containing UIC data (if filter is `TRUE`). 
-#' @param app_user_id A character string representing the name of the column containing app user IDs in `UIC_Tracker`.
-#' @param country A character string representing the country for which to retrieve data (required if filter is `TRUE`).
-#' @param study A character string representing the study for which to retrieve data (required if filter is `TRUE`).
-#' 
-#' @return Data frame containing notification data from postgres
+#' @return A data frame containing notification interaction data from the PostgreSQL database, with the `notification_meta` column parsed into separate columns.
 #' @export
+#' @importFrom dplyr mutate unnest_wider bind_cols
+#' @importFrom jsonlite fromJSON
 #' 
-#' @examples #TODO
-get_nf_data <- function(site = get_app_connection(), filter = FALSE, UIC_Tracker = NULL,
-                         app_user_id = "app_user_id", country = "Tanzania", study) {
-  if (filter){
-    app_id <- UIC_Tracker %>% 
-      dplyr::filter(Country == country, Study == study) %>% 
-      dplyr::pull(YourParentAppCode)
-    qry <- stringr::str_c("select * from app_notification_interaction where ", app_user_id, " in ('", paste0(app_id, collapse="', '"), "')")
-    df <- get_postgres_data(site = site, qry = qry)
-  } else {
-    df <- get_postgres_data(site = site, name = "app_notification_interaction")
-  }
-  appdata_df <- list()
-  for (i in 1:nrow(df)) {
-    if (!is.na(df$notification_meta[i])) {
-      appdata_df[[i]] <- data.frame(jsonlite::fromJSON(df$notification_meta[i]))
-    }
-    else {
-      appdata_df[[i]] <- data.frame(i)
-    }
-  }
-  appdata <- dplyr::bind_rows(appdata_df)
-  plhdata <- dplyr::bind_cols(df, appdata)
-  return(plhdata)
+#' @examples
+#' # TODO
+#' 
+get_nf_data <- function(site = get_app_connection(), filter = FALSE, filter_variable = NULL,
+                        filter_variable_value = NULL) {
+  
+  df <- get_openapp_data(site = site,
+                         name = "app_notification_interaction",
+                         filter = filter,
+                         filter_variable = filter_variable,
+                         filter_variable_value = filter_variable_value)
+  
+  appdata_df <- purrr::map(df$notification_meta, jsonlite::fromJSON) %>% dplyr::bind_rows()
+  return_data <- dplyr::bind_cols(df, appdata_df)
+  
+  return(return_data)
 }

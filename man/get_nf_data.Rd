@@ -2,36 +2,31 @@
 % Please edit documentation in R/get_nf_data.R
 \name{get_nf_data}
 \alias{get_nf_data}
-\title{Retrieve data from the app_notification_interaction table}
+\title{Get notification data from OpenAppBuilder}
 \usage{
 get_nf_data(
   site = get_app_connection(),
   filter = FALSE,
-  UIC_Tracker = NULL,
-  app_user_id = "app_user_id",
-  country = "Tanzania",
-  study
+  filter_variable = NULL,
+  filter_variable_value = NULL
 )
 }
 \arguments{
-\item{site}{The name of the PostgreSQL database (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
+\item{site}{The name of the PostgreSQL database connection (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
 
-\item{filter}{A logical value indicating whether to filter the UIC data frame (defaults to \code{FALSE}).}
+\item{filter}{A logical value indicating whether to filter the data (defaults to \code{FALSE}).}
 
-\item{UIC_Tracker}{A data frame containing UIC data (if filter is \code{TRUE}).}
+\item{filter_variable}{A character string representing the name of the column to filter if \code{filter == TRUE} and \code{filter_variable_value} is provided.}
 
-\item{app_user_id}{A character string representing the name of the column containing app user IDs in \code{UIC_Tracker}.}
-
-\item{country}{A character string representing the country for which to retrieve data (required if filter is \code{TRUE}).}
-
-\item{study}{A character string representing the study for which to retrieve data (required if filter is \code{TRUE}).}
+\item{filter_variable_value}{A character string representing the value of the \code{filter_variable} column to filter if \code{filter == TRUE}.}
 }
 \value{
-Data frame containing notification data from postgres
+A data frame containing notification interaction data from the PostgreSQL database, with the \code{notification_meta} column parsed into separate columns.
 }
 \description{
-This function retrieves data from the `app_notification_interaction`` table in a PostgreSQL database.
+This function retrieves data from the \code{app_notification_interaction} table in OpenAppBuilder and efficiently parses the \code{notification_meta} column from JSON format.
 }
 \examples{
-#TODO
+# TODO
+
 }

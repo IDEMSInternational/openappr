@@ -2,21 +2,13 @@
 % Please edit documentation in R/get_user_data.R
 \name{get_user_data}
 \alias{get_user_data}
-\title{Get user data from postgres site}
+\title{Get user data from OpenAppBuilder}
 \usage{
 get_user_data(
   site = get_app_connection(),
   filter = FALSE,
-  country = "Tanzania",
-  study,
-  UIC_Tracker,
-  app_user_id = NULL,
   filter_variable = NULL,
   filter_variable_value = NULL,
-  include_UIC_data = FALSE,
-  merge_check = TRUE,
-  join_UIC = "UIC",
-  max_dist = 5,
   date_from = NULL,
   date_to = NULL,
   format_date = "\%Y-\%m-\%d",
@@ -24,29 +16,13 @@ get_user_data(
 )
 }
 \arguments{
-\item{site}{The name of the PostgreSQL database (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
+\item{site}{The name of the PostgreSQL database connection (using \code{DBI::dbConnect} or \code{set_app_connection()}).}
 
 \item{filter}{A logical value indicating whether to filter data (defaults to \code{FALSE}).}
 
-\item{country}{A character string representing the country for which to retrieve data (required if filter is \code{TRUE}).}
+\item{filter_variable}{A character string representing the name of the column to filter if \code{filter == TRUE} and \code{filter_variable_value} is provided.}
 
-\item{study}{A character string representing the study for which to retrieve data (required if filter is \code{TRUE}).}
-
-\item{UIC_Tracker}{A data frame containing UIC data (if \code{include_UIC_data = TRUE}).}
-
-\item{app_user_id}{A character string representing the name of the column containing app user IDs in \code{UIC_Tracker}. Default \code{NULL}.}
-
-\item{filter_variable}{A character string representing the name of the column to filter to if \code{filter == TRUE} and \code{app_user_id} is \code{NULL}.}
-
-\item{filter_variable_value}{A character string representing the value of the column \code{filter_variable} to filter to if \code{filter == TRUE} and \code{app_user_id} is \code{NULL}.}
-
-\item{include_UIC_data}{A logical value indicating whether to include UIC data (defaults to \code{FALSE}).}
-
-\item{merge_check}{A logical value indicating whether to merge check data (defaults to \code{TRUE}).}
-
-\item{join_UIC}{A character string representing the name of the column used to join UIC_Tracker and the main data frame.}
-
-\item{max_dist}{An integer specifying the maximum distance for UIC data (defaults to 5).}
+\item{filter_variable_value}{A character string representing the value of the \code{filter_variable} column to filter if \code{filter == TRUE}.}
 
 \item{date_from}{An optional character string representing the date from which to retrieve data.}
 
@@ -55,15 +31,15 @@ get_user_data(
 \item{format_date}{A character string specifying the format of the date strings (defaults to "\%Y-\%m-\%d").}
 
 \item{tzone_date}{A character string specifying the time zone for the date strings (defaults to "UTC").
-System-specific (see \code{\link[base]{as.POSIXlt}}), but "" is the current time zone, and "GMT" is UTC (Universal Time, Coordinated).
+System-specific (see \code{\link[base]{as.POSIXlt}}), but "" uses the current time zone, and "GMT" is UTC (Universal Time, Coordinated).
 Invalid values are most commonly treated as UTC, on some platforms with a warning.}
 }
 \value{
-Data frame containing user data from postgres
+A data frame containing user data from the PostgreSQL database, with the \code{contact_fields} column parsed into separate columns.
 }
 \description{
-Retrieves data from the \code{app_users} table in the specified PostgreSQL database, and converts the contact_fields column to a data frame using jsonlite::fromJSON().
-If filter is TRUE, the function further filters the data to include only rows where the Country column matches country and the Study column matches study.
+Retrieves data from the \code{app_users} table in OpenAppBuilder, and efficiently converts the \code{contact_fields} column from JSON format to a data frame.
+If \code{filter} is \code{TRUE}, the function further filters the data to include only rows where the specified \code{filter_variable} column matches \code{filter_variable_value}.
 }
 \examples{
 # TODO

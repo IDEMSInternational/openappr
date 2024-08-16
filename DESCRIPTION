@@ -12,9 +12,7 @@ RoxygenNote: 7.2.3
 Imports:
     DBI,
     dplyr,
-    fuzzyjoin,
     jsonlite,
-    plyr,
     purrr,
     magrittr,
     rlang,
@@ -22,5 +20,4 @@ Imports:
     RSQLite,
     stringr,
     testthat,
-    tidyr,
-    yesno
+    tidyr

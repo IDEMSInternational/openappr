@@ -13,11 +13,14 @@ Imports:
     DBI,
     dplyr,
     jsonlite,
-    purrr,
+    knitr,
     magrittr,
+    purrr,
     rlang,
+    rmarkdown,
     RPostgres,
     RSQLite,
     stringr,
     testthat,
     tidyr
+VignetteBuilder: knitr

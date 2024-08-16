@@ -9,8 +9,6 @@
 #' 
 #' @return A data frame containing notification interaction data from the PostgreSQL database, with the `notification_meta` column parsed into separate columns.
 #' @export
-#' @importFrom dplyr mutate unnest_wider bind_cols
-#' @importFrom jsonlite fromJSON
 #' 
 #' @examples
 #' # TODO

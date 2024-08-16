@@ -1,0 +1,77 @@
+---
+title: "Getting Started with the OpenAppBuilder Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with the OpenAppBuilder Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+### Introduction
+
+This vignette provides an overview of the `openappr` package and demonstrates how to use its functions to interact with OpenAppBuilder to get your App Data into R.
+
+### Setting Up the Connection
+
+Before retrieving data, you must establish a connection to your OpenAppBuilder (PostgreSQL) database using the `set_app_connection()` function:
+
+```r
+set_app_connection(
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
+)
+```
+
+Once the connection is established, you can retrieve it at any time using the get_app_connection() function:
+
+```r
+con <- get_app_connection()
+```
+
+### User and Notification Data Retrieval
+For specific user data, use the `get_user_data()` function:
+
+```r
+# Retrieve user data filtered by user ID
+valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+data_filtered_notifications <- get_openapp_data(
+  name = "app_users",
+  filter = TRUE,
+  filter_variable = "app_user_id",
+  filter_variable_value = valid_ids
+)
+```
+
+Similarly, the `get_nf_data()` function allows you to retrieve and process notification interaction data:
+
+```r
+# Retrieve filtered notification interaction data
+filtered_notification_data <- get_nf_data(
+  filter = TRUE,
+  filter_variable = "Country",
+  filter_variable_value = "USA"
+)
+```
+
+### Retrieving General Data
+The `get_openapp_data()` function allows you to retrieve data from the specified tables or execute a custom SQL query.
+
+```r
+# Retrieve all data from the 'app_users' table
+data_all_users <- get_openapp_data()
+
+# Retrieve filtered data from the 'app_users' table
+valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+data_filtered_notifications <- get_openapp_data(
+  name = "app_users",
+  filter = TRUE,
+  filter_variable = "app_user_id",
+  filter_variable_value = valid_ids
+)
+```
+
+### Conclusion
+The `openappr` package provides a convenient way to connect to OpenAppBuilder and retrieve data, customise your queries, and filter to suit your data needs.

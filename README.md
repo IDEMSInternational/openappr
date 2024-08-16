@@ -30,7 +30,7 @@ You can install the development version of openappr from
 devtools::install_github("IDEMSInternational/openappr")
 ```
 
-## Example
+## About `openappr`
 
 The use of `openappr` begins by establishing a connection to the
 PostgresSQL website. This can be achieved using the
@@ -57,20 +57,47 @@ Both functions utilise the underlying capabilities of the `RPostgres`
 package but are tailored to provide a more user-friendly interface that
 requires minimal SQL knowledge.
 
+## Example
+
 This is a basic example which shows you how can import notification and
 user data from open-app builder into R:
 
 ``` r
-# Setting up the database connection
-openappr::set_app_connection(host = "YOUR_DATABASE_HOST", 
-                              port = "YOUR_DATABASE_PORT", 
-                              dbname = "YOUR_DATABASE_NAME",
-                              user = "YOUR_USERNAME", 
-                              password = "YOUR_PASSWORD")
+# Before retrieving data, you must establish a connection to your OpenAppBuilder (PostgreSQL) database using the `set_app_connection()` function:
 
-# Fetching notification data
-notifications <- openappr::get_nf_data()
+openappr::set_app_connection(
+  dbname = "vmc",
+  host = "apps-server.idems.international",
+  port = 5432,
+  user = "vmc",
+  password = "LSQkyYg5KzL747"
+)
 
-# Fetching user data
-users <- openappr::get_user_data()
+# Once the connection is established, you can retrieve it at any time using the get_app_connection() function:
+
+con <- get_app_connection()
+
+# For specific user data, use the `get_user_data()` function:
+
+valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+data_filtered_notifications <- get_openapp_data(
+  name = "app_users",
+  filter = TRUE,
+  filter_variable = "app_user_id",
+  filter_variable_value = valid_ids
+)
+
+# Similarly, the `get_nf_data()` function allows you to retrieve and process notification interaction data:
+
+filtered_notification_data <- get_nf_data(
+  filter = TRUE,
+  filter_variable = "Country",
+  filter_variable_value = "USA"
+)
 ```
+
+## Conclusion
+
+The `openappr` package provides a convenient way to connect to
+OpenAppBuilder and retrieve data, customise your queries, and filter to
+suit your data needs.

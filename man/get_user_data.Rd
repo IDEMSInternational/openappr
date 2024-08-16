@@ -54,8 +54,10 @@ set_app_connection(
 # Retrieve all data from the 'app_users' table
 data_all_users <- get_user_data()
 
-# Retrieve filtered data from the 'app_users' table where 'app_user_id' is '3e68fcda-d4cd-400e-8b12-6ddfabced348' or '223925c7-443a-411c-aa2a-a394f991dd52'
-valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+# Retrieve data from the 'app_users' table where 'app_user_id' is
+# a specified ID.
+valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348",
+               "223925c7-443a-411c-aa2a-a394f991dd52")
 data_filtered_users <- get_user_data(
   filter = TRUE,
   filter_variable = "app_user_id",

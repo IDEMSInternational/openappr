@@ -24,8 +24,10 @@
 #' # Retrieve all notification data
 #' data_all_nf <- get_nf_data()
 #' 
-#' # Retrieve data where 'app_user_id' is '3e68fcda-d4cd-400e-8b12-6ddfabced348' or '223925c7-443a-411c-aa2a-a394f991dd52'
-#' valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
+#' # Retrieve data where 'app_user_id' is '3e68fcda-d4cd-400e-8b12-6ddfabced348' 
+#' # or '223925c7-443a-411c-aa2a-a394f991dd52'
+#' valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348",
+#'                "223925c7-443a-411c-aa2a-a394f991dd52")
 #' data_filtered_users <- get_nf_data(
 #'   filter = TRUE,
 #'   filter_variable = "app_user_id",

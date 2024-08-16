@@ -5,7 +5,7 @@ Authors@R:
     person("Lily", "Clements", , "lily@idems.international", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8864-0552"))
 Description: Call User and Notification data from OpenAppBuilder into R.
-License: LGPL (>= 3)
+License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

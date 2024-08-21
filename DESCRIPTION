@@ -1,10 +1,10 @@
 Package: openappr
-Title: Retrieve App Data from OpenAppBuilder
+Title: Retrieve App Data from 'OpenAppBuilder'
 Version: 0.1.0
 Authors@R: 
     person("Lily", "Clements", , "lily@idems.international", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8864-0552"))
-Description: Call User and Notification data from OpenAppBuilder into R.
+Description: This package provides an interface to connect R with the 'OpenAppBuilder' platform, allowing users to retrieve and work with user and notification data for further analysis and processing. The package is designed for developers and analysts who need to integrate data from 'OpenAppBuilder' into their R workflows. This is achieved by leveraging a 'Postgres' database connection to query and import app data directly into R.
 License: LGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

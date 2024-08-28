@@ -15,7 +15,7 @@ status](https://www.r-pkg.org/badges/version/openappr)](https://CRAN.R-project.o
 [![license](https://img.shields.io/badge/license-LGPL%20(%3E=%203)-lightgrey.svg)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 <!-- badges: end -->
 
-The goal of `openappr` is to import app data from Open App Builder.
+The goal of `openappr` is to import app data from OpenAppBuilder.
 
 ## Installation
 
@@ -29,13 +29,12 @@ devtools::install_github("IDEMSInternational/openappr")
 
 ## About `openappr`
 
-The use of `openappr` begins by establishing a connection to the
-PostgresSQL website. This can be achieved using the
-`get_app_connection()` function, which is simply a wrapper to the
-`dbconnect` function from the `DBI` package. By using the
-`get_app_connection()` function, the connection is stored in the package
-environment, ensuring that subsequent calls to retrieve the app data
-uses this connection.
+The use of `openappr` begins by establishing a connection to
+‘OpenAppBuilder’. This can be achieved using the `get_app_connection()`
+function, which is simply a wrapper to the `dbconnect` function from the
+`DBI` package. By using the `get_app_connection()` function, the
+connection is stored in the package environment, ensuring that
+subsequent calls to retrieve the app data uses this connection.
 
 The primary functionality of `openappr` revolves around two main types
 of data retrieval:

@@ -15,7 +15,9 @@ This vignette provides an overview of the `openappr` package and demonstrates ho
 
 Before retrieving data, you must establish a connection to your OpenAppBuilder (PostgreSQL) database using the `set_app_connection()` function:
 
-```r
+```{r eval = FALSE}
+library(openappr)
+
 set_app_connection(
   dbname = "vmc",
   host = "apps-server.idems.international",
@@ -27,17 +29,17 @@ set_app_connection(
 
 Once the connection is established, you can retrieve it at any time using the get_app_connection() function:
 
-```r
+```{r eval = FALSE}
 con <- get_app_connection()
 ```
 
 ### User and Notification Data Retrieval
 For specific user data, use the `get_user_data()` function:
 
-```r
+```{r eval = FALSE}
 # Retrieve user data filtered by user ID
 valid_ids <- c("3e68fcda-d4cd-400e-8b12-6ddfabced348", "223925c7-443a-411c-aa2a-a394f991dd52")
-data_filtered_notifications <- get_openapp_data(
+data_filtered_users <- get_openapp_data(
   name = "app_users",
   filter = TRUE,
   filter_variable = "app_user_id",
@@ -47,19 +49,19 @@ data_filtered_notifications <- get_openapp_data(
 
 Similarly, the `get_nf_data()` function allows you to retrieve and process notification interaction data:
 
-```r
+```{r eval = FALSE}
 # Retrieve filtered notification interaction data
 filtered_notification_data <- get_nf_data(
   filter = TRUE,
-  filter_variable = "Country",
-  filter_variable_value = "USA"
+  filter_variable = "app_user_id",
+  filter_variable_value = valid_ids
 )
 ```
 
 ### Retrieving General Data
 The `get_openapp_data()` function allows you to retrieve data from the specified tables or execute a custom SQL query.
 
-```r
+```{r eval = FALSE}
 # Retrieve all data from the 'app_users' table
 data_all_users <- get_openapp_data()
 

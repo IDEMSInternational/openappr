@@ -9,18 +9,19 @@ License: LGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Suggests:
+    knitr,
+    testthat,
+    rmarkdown
 Imports:
     DBI,
     dplyr,
     jsonlite,
-    knitr,
     magrittr,
     purrr,
     rlang,
-    rmarkdown,
     RPostgres,
     RSQLite,
     stringr,
-    testthat,
     tidyr
 VignetteBuilder: knitr

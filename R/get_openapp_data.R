@@ -12,7 +12,7 @@
 #' @return A data frame containing the retrieved data from the specified PostgreSQL table or the result of the executed SQL query.
 #' @export
 #' 
-#' @examples # TODO
+#' @examples
 #' # First we need to set an app connection
 #' set_app_connection(
 #'   dbname = "vmc",

@@ -33,7 +33,6 @@ A data frame containing the retrieved data from the specified PostgreSQL table o
 Retrieves data from OpenAppBuilder by querying the specified PostgreSQL database. The function can either retrieve all data from a specific table (e.g., \code{app_users} or \code{app_notification_interaction}) or execute a custom SQL query provided by the user.
 }
 \examples{
-# TODO
 # First we need to set an app connection
 set_app_connection(
   dbname = "vmc",

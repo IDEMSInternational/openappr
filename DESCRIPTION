@@ -4,7 +4,7 @@ Version: 0.2.0
 Authors@R: 
     person("Lily", "Clements", , "lily@idems.international", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8864-0552"))
-Description: Provides an interface to connect R with the <https://open-app-builder.com> 'OpenAppBuilder' platform, enabling users to retrieve and work with user and notification data for analysis and processing. It is designed for developers and analysts to seamlessly integrate data from 'OpenAppBuilder' into R workflows via a 'Postgres' database connection, allowing direct querying and import of app data into R.
+Description: Provides an interface to connect R with the <https://github.com/IDEMSInternational/open-app-builder> 'OpenAppBuilder' platform, enabling users to retrieve and work with user and notification data for analysis and processing. It is designed for developers and analysts to seamlessly integrate data from 'OpenAppBuilder' into R workflows via a 'Postgres' database connection, allowing direct querying and import of app data into R.
 License: LGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -19,9 +19,6 @@ Imports:
     jsonlite,
     magrittr,
     purrr,
-    rlang,
     RPostgres,
-    RSQLite,
-    stringr,
-    tidyr
+    stringr
 VignetteBuilder: knitr
